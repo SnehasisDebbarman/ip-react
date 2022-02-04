@@ -118,63 +118,67 @@ function App() {
   }
   return (
     <div className="app">
-      <div className="foreground">
-        <div className="info-container">
-          <div>
-            <header className="app-header">IP Address Tracker</header>
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Search for any IP address or Domain"
-              onChange={(e) => setIp(e.target.value)}
-            />
-            <button onClick={handleSubmit}>.</button>
-          </div>
+      <main>
+        <div className="foreground">
+          <div className="info-container">
+            <div>
+              <header>
+                <h1 className="app-header">IP Address Tracker</h1>{" "}
+              </header>
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Search for any IP address or Domain"
+                onChange={(e) => setIp(e.target.value)}
+              />
+              <button onClick={handleSubmit}>.</button>
+            </div>
 
-          <div className="card">
-            <div className="ip-address-container">
-              <p>IP ADDRESS</p>
-              <div>{Data.query}</div>
-            </div>
-            <div className="location-container">
-              <p>LOCATION</p>
-              <div>
-                {Data.regionName}, {Data.region}, {Data.zip}
+            <div className="card">
+              <div className="ip-address-container">
+                <p>IP ADDRESS</p>
+                <div>{Data.query}</div>
               </div>
-            </div>
-            <div className="timezone-conatiner">
-              <p>TIME ZONE</p>
-              <div>{secondsToHms(Data.offset)}</div>
-            </div>
-            <div className="isp-container">
-              <p>ISP</p>
-              <div>{Data.isp}</div>
+              <div className="location-container">
+                <p>LOCATION</p>
+                <div>
+                  {Data.regionName}, {Data.region}, {Data.zip}
+                </div>
+              </div>
+              <div className="timezone-conatiner">
+                <p>TIME ZONE</p>
+                <div>{secondsToHms(Data.offset)}</div>
+              </div>
+              <div className="isp-container">
+                <p>ISP</p>
+                <div>{Data.isp}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="background">
-        <div alt="" />
-        <MapContainer
-          center={Coords}
-          zoom={17}
-          scrollWheelZoom={false}
-          id="map"
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={Coords} icon={customMarkerIcon}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-          <ChangeMapView coords={Coords} />
-          <ZoomControl position="bottomleft" />
-        </MapContainer>
-      </div>
+        <div className="background">
+          <div />
+          <MapContainer
+            center={Coords}
+            zoom={17}
+            scrollWheelZoom={false}
+            id="map"
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={Coords} icon={customMarkerIcon}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+            <ChangeMapView coords={Coords} />
+            <ZoomControl position="bottomleft" />
+          </MapContainer>
+        </div>
+      </main>
     </div>
   );
 }
