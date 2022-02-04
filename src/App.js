@@ -38,29 +38,60 @@ function App() {
     html: iconMarkup,
   });
   useEffect(() => {
+    // axios
+    //   .get(
+    //     `http://ip-api.com/json/${Ip}?fields=status,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,isp,query`
+    //   )
+    //   .then((res) => {
+    //     const ipInfo = res.data;
+
+    //     setData(ipInfo);
+    //     console.log(ipInfo);
+    //     setCoords([ipInfo.lat, ipInfo.lon]);
+    //   });
+
     axios
       .get(
-        `http://ip-api.com/json/${Ip}?fields=status,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,isp,query`
+        `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_Hp61qE0DOoF70Vmgi1g8N8cOEKKAs&ipAddress=${Ip}`
       )
       .then((res) => {
         const ipInfo = res.data;
-
-        setData(ipInfo);
-        console.log(ipInfo);
-        setCoords([ipInfo.lat, ipInfo.lon]);
+        const d = {
+          query: ipInfo.ip,
+          region: ipInfo.location.city,
+          regionName: ipInfo.location.region,
+          offset: ipInfo.location.timezone,
+          lat: ipInfo.location.lat,
+          lon: ipInfo.location.lng,
+          zip: ipInfo.location.postalCode,
+          isp: ipInfo.isp,
+        };
+        setData(d);
+        console.log(d);
+        setCoords([d.lat, d.lon]);
       });
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
       .get(
-        `https://ip-api.com/json/${Ip}?fields=status,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,isp,query`
+        `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_Hp61qE0DOoF70Vmgi1g8N8cOEKKAs&ipAddress=${Ip}`
       )
       .then((res) => {
         const ipInfo = res.data;
-        setData(ipInfo);
-        console.log(ipInfo);
-        setCoords([ipInfo.lat, ipInfo.lon]);
+        const d = {
+          query: ipInfo.ip,
+          region: ipInfo.location.city,
+          regionName: ipInfo.location.region,
+          offset: ipInfo.location.timezone,
+          lat: ipInfo.location.lat,
+          lon: ipInfo.location.lng,
+          zip: ipInfo.location.postalCode,
+          isp: ipInfo.isp,
+        };
+        setData(d);
+        console.log(d);
+        setCoords([d.lat, d.lon]);
       });
   };
   function secondsToHms(d) {
@@ -77,7 +108,8 @@ function App() {
 
     console.log(h, m);
 
-    return "UTC " + type + h + ":" + m;
+    // return "UTC " + type + h + ":" + m;
+    return "UTC " + d;
   }
   function ChangeMapView({ coords }) {
     const map = useMap();
@@ -127,7 +159,7 @@ function App() {
         <div alt="" />
         <MapContainer
           center={Coords}
-          zoom={15}
+          zoom={17}
           scrollWheelZoom={false}
           id="map"
         >
