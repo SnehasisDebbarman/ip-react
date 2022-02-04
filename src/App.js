@@ -21,6 +21,7 @@ function App() {
   const [Ip, setIp] = useState("192.212.174.101");
   const [Data, setData] = useState({});
   const [Coords, setCoords] = useState([37.8025, 122.271]);
+  const apiKey = process.env.REACT_APP_MAP_API_KEY;
   let icon = L.icon({
     iconRetinaUrl: require("./images/icon-location.png"),
     iconUrl: require("./images/icon-location.svg"),
@@ -52,7 +53,7 @@ function App() {
 
     axios
       .get(
-        `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_Hp61qE0DOoF70Vmgi1g8N8cOEKKAs&ipAddress=${Ip}`
+        `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=${apiKey}&ipAddress=${Ip}`
       )
       .then((res) => {
         const ipInfo = res.data;
@@ -105,8 +106,6 @@ function App() {
     }
     var h = Math.floor(dh / 3600);
     var m = Math.floor((dh % 3600) / 60);
-
-    console.log(h, m);
 
     // return "UTC " + type + h + ":" + m;
     return "UTC " + d;
