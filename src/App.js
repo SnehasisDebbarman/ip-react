@@ -54,7 +54,7 @@ function App() {
     event.preventDefault();
     axios
       .get(
-        `http://ip-api.com/json/${Ip}?fields=status,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,isp,query`
+        `https://ip-api.com/json/${Ip}?fields=status,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,isp,query`
       )
       .then((res) => {
         const ipInfo = res.data;
