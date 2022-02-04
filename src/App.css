@@ -63,6 +63,10 @@ input{
   font-weight: 500;
   color: gray;
 }
+input:hover :focus{
+  border: none;
+}
+
 button{
   width: 50px;
   color: white;
@@ -72,11 +76,13 @@ button{
   border-radius: 10px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  background-color: black;
+  background-color: hsl(0, 0%, 17%);
   background-image: url(./images/icon-arrow.svg);
   background-repeat: no-repeat;
   background-position: center;
-  
+}
+button:hover{
+  background-color: hsl(0, 0%, 59%);
 }
 .card{
   background-color: white;
