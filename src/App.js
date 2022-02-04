@@ -49,27 +49,6 @@ function App() {
         console.log(ipInfo);
         setCoords([ipInfo.lat, ipInfo.lon]);
       });
-
-    // axios
-    //   .get(
-    //     `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_Hp61qE0DOoF70Vmgi1g8N8cOEKKAs&ipAddress=${Ip}`
-    //   )
-    //   .then((res) => {
-    //     const ipInfo = res.data;
-    //     const d = {
-    //       query: ipInfo.query,
-    //       region: ipInfo.location.city,
-    //       regionName: ipInfo.location.region,
-    //       offset: ipInfo.location.timezone,
-    //       lat: ipInfo.location.lat,
-    //       lon: ipInfo.location.lng,
-    //       zip: ipInfo.location.postalCode,
-    //       isp: ipInfo.isp,
-    //     };
-    //     // setData(ipInfo);
-    //     console.log(d);
-    //     // setCoords([ipInfo.lat, ipInfo.lon]);
-    //   });
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
